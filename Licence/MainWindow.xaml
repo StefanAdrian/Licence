@@ -4,9 +4,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Licence"
+        xmlns:wpf="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Language="fr-FR"
+        Title="Stock Price" Height="550" Width="463"
+        ResizeMode="CanMinimize">
+    <Grid x:Name="mainWindow" MinWidth="461" MinHeight="550" MaxWidth="455" MaxHeight="519" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+        <DataGrid x:Name="realTimeGrid" ItemsSource="{Binding Data}" HorizontalAlignment="Left" Height="140" Margin="10,56,0,0" VerticalAlignment="Top" Width="426" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Company" Binding="{Binding Name}" Width="171" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Frankfurt Price" Binding="{Binding FRAPrice, StringFormat=C}" Width="89" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Bucharest Price" Binding="{Binding BVBPrice, StringFormat=C}" Width="93" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Difference" Binding="{Binding Difference, StringFormat={}{0:F2}%}" Width="65" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Real time prices" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="48">
+            <MenuItem Header="_Charts">
+                <MenuItem Header="_FRA">
+                    <MenuItem Header="BMW" Click="MenuItem_Click_FRA_BMW"/>
+                    <MenuItem Header="Bayer" Click="MenuItem_Click_FRA_BAYN"/>
+                    <MenuItem Header="Lufthansa" Click="MenuItem_Click_FRA_LHA"/>
+                    <MenuItem Header="Siemens" Click="MenuItem_Click_FRA_SIE"/>
+                    <MenuItem Header="Deutsche Bank" Click="MenuItem_Click_FRA_DBK"/>
+                </MenuItem>
+                <MenuItem Header="_BVB">
+                    <MenuItem Header="BMW" Click="MenuItem_Click_BVB_BMW"/>
+                    <MenuItem Header="Bayer" Click="MenuItem_Click_BVB_BAYN"/>
+                    <MenuItem Header="Lufthansa" Click="MenuItem_Click_BVB_LHA"/>
+                    <MenuItem Header="Siemens" Click="MenuItem_Click_BVB_SIE"/>
+                    <MenuItem Header="Deutsche Bank" Click="MenuItem_Click_BVB_DBK"/>
+                </MenuItem>
+                <MenuItem Header="_FRA vs BVB">
+                    <MenuItem Header="BMW" Click="MenuItem_Click_FRA_vs_BVB_BMW"/>
+                    <MenuItem Header="Bayer" Click="MenuItem_Click_FRA_vs_BVB_BAYN"/>
+                    <MenuItem Header="Lufthansa" Click="MenuItem_Click_FRA_vs_BVB_LHA"/>
+                    <MenuItem Header="Siemens" Click="MenuItem_Click_FRA_vs_BVB_SIE"/>
+                    <MenuItem Header="Deutsche Bank" Click="MenuItem_Click_FRA_vs_BVB_DBK"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <Label Content="Historical prices" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Width="101" FontWeight="Bold"/>
+        <DataGrid x:Name="historicalpriceGrid" ItemsSource="{Binding LoadDataBinding}" HorizontalAlignment="Left" Height="257" Margin="10,242,0,0" VerticalAlignment="Top" Width="426">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Company" Binding="{Binding Name}" Width="171" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Exchange" Binding="{Binding Ticker}" Width="61" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price, StringFormat=C}" Width="54" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding LastTradeDateTime}" Width="115" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
