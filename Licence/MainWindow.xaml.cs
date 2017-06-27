@@ -179,7 +179,7 @@ namespace Licence
         {
             dbc = new DBConnection();
             dbc.OpenConnection();
-            cmd = new MySqlCommand(query, dbc.connection);
+            cmd = new MySqlCommand(queryFirstSeries, dbc.connection);
             MySqlDataReader dataReader = cmd.ExecuteReader();
             while (dataReader.Read())
             {
@@ -187,7 +187,7 @@ namespace Licence
             }
             dataReader.Close();
 
-            cmd = new MySqlCommand(query, dbc.connection);
+            cmd = new MySqlCommand(querySecondSeries, dbc.connection);
             dataReader = cmd.ExecuteReader();
             while (dataReader.Read())
             {
