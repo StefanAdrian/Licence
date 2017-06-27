@@ -22,10 +22,10 @@ namespace Licence
 
         private void Initialize()
         {
-            server = "89.238.232.245";
-            database = "Stock";
-            username = "sab";
-            password = "SAB";
+            server = "";
+            database = "";
+            username = "";
+            password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
